@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useEffect } from 'react'
+
 import { useUser } from '../context/userContext'
 import firebase from '../firebase/clientApp'
 
