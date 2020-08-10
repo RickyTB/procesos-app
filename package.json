@@ -11,7 +11,8 @@
     "firebase": "7.17.0",
     "next": "latest",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "sass": "^1.26.10"
   },
   "license": "MIT"
 }
