@@ -10,13 +10,25 @@
 @import "../../node_modules/bulma/sass/utilities/initial-variables";
 // 2. Set your own initial variables
 // Update the sans-serif font family
-//$family-sans-serif: "Helvetica", "Arial", sans-serif;
+$family-sans-serif: "Recursive", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 // 3. Set the derived variables
 // Use the new pink as the primary color
-$primary: #ff0000;
+$primary: #d90429;
 $primary-invert: #fff;
+$link: $primary;
+
+$purple: #2b2d42;
+$purple-invert: #fff;
 // 4. Import the rest of Bulma
 
-$body-background-color: #fafafa;
+$body-background-color: #edf2f4;
+$scheme-main-bis: transparent;
+
+$navbar-box-shadow-color: rgba(0,0,0,0.1);
 
 @import "../../node_modules/bulma/bulma";
+
+.card {
+  border-radius: 6px;
+  overflow: hidden;
+}

@@ -1,12 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import Link from "next/link";
+
+import {useUser} from "../../context/userContext";
+import firebase from "../../firebase/clientApp";
 
 const Navbar = () => {
+    const {loadingUser, user} = useUser();
+
+    useEffect(() => {
+        if (!loadingUser) {
+            // You know that the user is loaded: either logged in or out!
+            console.log(user);
+        }
+        // You also have your firebase app initialized
+        console.log(firebase);
+    }, [loadingUser, user]);
+
     return (
-        <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
+        <nav className="navbar is-black is-fixed-top has-shadow" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item" href="/">
-                    <img src="/tienda_friki_logo.png" height="28" alt="Tienda Friki Logo"/>
-                </a>
+                <Link href="/">
+                    <a className="navbar-item">
+                        <img src="/tienda_friki_logo.png" height="28" alt="Tienda Friki Logo"/>
+                    </a>
+                </Link>
                 <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false"
                    data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
@@ -16,9 +33,11 @@ const Navbar = () => {
             </div>
             <div id="navbarBasicExample" className="navbar-menu">
                 <div className="navbar-start">
-                    <a className="navbar-item">
-                        Productos
-                    </a>
+                    <Link href="/">
+                        <a className="navbar-item">
+                            Productos
+                        </a>
+                    </Link>
                     <a className="navbar-item">
                         Publicar oferta
                     </a>
@@ -46,12 +65,16 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-item">
                         <div className="buttons">
-                            <a className="button is-primary">
-                                <strong>Registrarse</strong>
-                            </a>
-                            <a className="button is-light">
-                                Iniciar sesión
-                            </a>
+                            <Link href="/registro">
+                                <a className="button is-primary">
+                                    Registrarse
+                                </a>
+                            </Link>
+                            <Link href="/ingreso">
+                                <a className="button is-light">
+                                    Iniciar sesión
+                                </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
