@@ -1,21 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useCallback} from 'react';
 import Link from "next/link";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {useUser} from "../../context/userContext";
 import firebase from "../../firebase/clientApp";
 
 const Navbar = () => {
     const {loadingUser, user} = useUser();
-
-    useEffect(() => {
-        if (!loadingUser) {
-            // You know that the user is loaded: either logged in or out!
-            console.log(user);
-        }
-        // You also have your firebase app initialized
-        console.log(firebase);
-    }, [loadingUser, user]);
-
+    const handleSignOut = useCallback(async () => firebase.auth().signOut(), []);
     return (
         <nav className="navbar is-black is-fixed-top has-shadow" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
@@ -43,40 +35,48 @@ const Navbar = () => {
                     </a>
                 </div>
                 <div className="navbar-end">
-                    <div className="navbar-item has-dropdown is-hoverable">
-                        <a className="navbar-link">
-                            More
-                        </a>
-                        <div className="navbar-dropdown">
-                            <a className="navbar-item">
-                                About
-                            </a>
-                            <a className="navbar-item">
-                                Jobs
-                            </a>
-                            <a className="navbar-item">
-                                Contact
-                            </a>
-                            <hr className="navbar-divider"/>
-                            <a className="navbar-item">
-                                Report an issue
-                            </a>
+                    {loadingUser ? (
+                        <div className="navbar-item">
+                            <FontAwesomeIcon icon="circle-notch" spin/>
                         </div>
-                    </div>
-                    <div className="navbar-item">
-                        <div className="buttons">
-                            <Link href="/registro">
-                                <a className="button is-primary">
-                                    Registrarse
+                    ) : user ? (
+                        <>
+                            <div className="navbar-item has-dropdown is-hoverable">
+                                <a className="navbar-link">
+                                    {user.displayName || "Mi Cuenta"}
                                 </a>
-                            </Link>
-                            <Link href="/ingreso">
-                                <a className="button is-light">
-                                    Iniciar sesión
-                                </a>
-                            </Link>
+                                <div className="navbar-dropdown">
+                                    <a className="navbar-item">
+                                        Ofertas
+                                    </a>
+                                    <a className="navbar-item">
+                                        Citas
+                                    </a>
+                                    <a className="navbar-item">
+                                        Documentos
+                                    </a>
+                                </div>
+                            </div>
+                            <a className="navbar-item" onClick={handleSignOut} title="Cerrar sesión">
+                                <FontAwesomeIcon icon="sign-out-alt"/>
+                            </a>
+                        </>
+                    ) : (
+                        <div className="navbar-item">
+                            <div className="buttons">
+                                <Link href="/registro">
+                                    <a className="button is-primary">
+                                        Registrarse
+                                    </a>
+                                </Link>
+                                <Link href="/ingreso">
+                                    <a className="button is-light">
+                                        Iniciar sesión
+                                    </a>
+                                </Link>
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </nav>
