@@ -30,9 +30,11 @@ const Navbar = () => {
                             Productos
                         </a>
                     </Link>
-                    <a className="navbar-item">
-                        Publicar oferta
-                    </a>
+                    <Link href="/ofertar">
+                        <a className="navbar-item">
+                            Publicar oferta
+                        </a>
+                    </Link>
                 </div>
                 <div className="navbar-end">
                     {loadingUser ? (

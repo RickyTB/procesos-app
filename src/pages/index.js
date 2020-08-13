@@ -18,10 +18,10 @@ export default function Home() {
                             </div>
                             <div className="column">
                                 <h1 className="title">
-                                    Primary bold title
+                                    Los mejores artículos de tus: cómics, series, películas, libros, anime...
                                 </h1>
                                 <h2 className="subtitle">
-                                    Primary bold subtitle
+                                    Explora nuestros artículos disponibles
                                 </h2>
                             </div>
                         </div>

@@ -47,7 +47,6 @@ const Login = () => {
                                 </figure>
                                 <h2 className="subtitle colored is-4">Los mejores artículos de tus: cómics,
                                     series, películas, libros, anime...</h2>
-                                <p>Con una cuenta podrás comprar artículos y ofertar los tuyos.</p>
                             </div>
                             <div className="column">
                                 <div className="box">
