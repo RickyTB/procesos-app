@@ -1,0 +1,1 @@
+export const BONITA_URL = "http://localhost:8080"
