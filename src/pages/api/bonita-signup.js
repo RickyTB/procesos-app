@@ -3,6 +3,7 @@ import qs from 'qs';
 import cookie from 'cookie';
 
 import {BONITA_URL} from "../../utils/constants";
+import {findProcess} from "../../utils/common-requests";
 
 export default async (req, res) => {
     if (req.method !== "POST") return res.status(404).json({error: {message: "Route not found."}});
@@ -37,7 +38,24 @@ export default async (req, res) => {
                 Cookie: bonitaToken.cookie,
             }
         });
-        console.log(user, membership);
+        const publishProcess = await findProcess("CompraDeConsola", bonitaToken["X-Bonita-API-Token"], {Cookie: bonitaToken.cookie});
+        const actorPayload = {"actor_id": publishProcess.actorinitiatorid, "user_id": user.id};
+        const {data: actor} = await axios.post(`${BONITA_URL}/bonita/API/bpm/actorMember`, actorPayload, {
+            withCredentials: true,
+            headers: {
+                "X-Bonita-API-Token": bonitaToken["X-Bonita-API-Token"],
+                Cookie: bonitaToken.cookie,
+            }
+        });
+        const memberPayload = {"profile_id": "1", "member_type": "USER", "user_id": user.id};
+        const {data: member} = await axios.post(`${BONITA_URL}/bonita/API/portal/profileMember/`, memberPayload, {
+            withCredentials: true,
+            headers: {
+                "X-Bonita-API-Token": bonitaToken["X-Bonita-API-Token"],
+                Cookie: bonitaToken.cookie,
+            }
+        });
+        console.log(user, membership, actor, member);
         res.status(200).json(user);
     } catch (e) {
         console.log(e.response);

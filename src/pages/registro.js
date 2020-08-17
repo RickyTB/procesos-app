@@ -32,10 +32,11 @@ const Signup = () => {
         setLoading(true);
         try {
             await firebase.auth().createUserWithEmailAndPassword(values.email, values.password);
-            await firebase.auth().currentUser.updateProfile({
-                displayName: `${values.firstName} ${values.lastName}`
-            });
-            await axios.post('/api/bonita-signup', values);
+            const {data: bonitaUser} = await axios.post('/api/bonita-signup', values);
+            const user = firebase.auth().currentUser;
+            await user.updateProfile({displayName: `${values.firstName} ${values.lastName}`});
+            const db = firebase.firestore();
+            await db.collection("users").doc(user.uid).set({bonitaId: bonitaUser.id});
             const params = new URLSearchParams();
             params.append("username", values.email);
             params.append("password", values.password);
