@@ -44,19 +44,27 @@ const Navbar = () => {
                     ) : user ? (
                         <>
                             <div className="navbar-item has-dropdown is-hoverable">
-                                <a className="navbar-link">
-                                    {user.displayName || "Mi Cuenta"}
-                                </a>
+                                <Link href="/cuenta">
+                                    <a className="navbar-link">
+                                        {user.displayName || "Mi Cuenta"}
+                                    </a>
+                                </Link>
                                 <div className="navbar-dropdown">
-                                    <a className="navbar-item">
-                                        Ofertas
-                                    </a>
-                                    <a className="navbar-item">
-                                        Citas
-                                    </a>
-                                    <a className="navbar-item">
-                                        Documentos
-                                    </a>
+                                    <Link href="/cuenta/ofertas">
+                                        <a className="navbar-item">
+                                            Ofertas
+                                        </a>
+                                    </Link>
+                                    <Link href="/cuenta/citas">
+                                        <a className="navbar-item">
+                                            Citas
+                                        </a>
+                                    </Link>
+                                    <Link href="/cuenta/documentos">
+                                        <a className="navbar-item">
+                                            Documentos
+                                        </a>
+                                    </Link>
                                 </div>
                             </div>
                             <a className="navbar-item" onClick={handleSignOut} title="Cerrar sesión">
