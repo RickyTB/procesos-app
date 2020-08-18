@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from "next/head";
 
-import AccountLayout from "../../components/AccountLayout/AccountLayout";
+import AccountLayout from "../../../components/AccountLayout/AccountLayout";
 
 const Documents = () => {
     return (

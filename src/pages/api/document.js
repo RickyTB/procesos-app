@@ -48,7 +48,7 @@ export default async (req, res) => {
         const users = [];
         snapshot.forEach(doc => users.push(doc));
         const [user] = users;
-        await user.collection("contracts").add({url});
+        await db.collection(`users/${user.id}/contracts`).add({url, createdAt: new Date()});
         res.status(200).json({success: ":D"});
     } catch (e) {
         return res.status(400).json({error: e});
