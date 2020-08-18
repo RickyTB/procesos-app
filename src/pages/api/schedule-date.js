@@ -14,14 +14,14 @@ export default async (req, res) => {
         const users = [];
         snapshot.forEach(doc => users.push(doc));
         const [user] = users;
-        const docRef = await user.collection("appointments").add({
+        await db.collection(`users/${user.id}/appointments`).add({
             startsAt,
             address,
             message
         });
-        console.log(docRef.data());
         res.status(200).json({success: ":D"});
     } catch (e) {
+        console.log(e);
         return res.status(400).json({error: e});
     }
 }
