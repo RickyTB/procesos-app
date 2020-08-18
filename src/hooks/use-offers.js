@@ -14,7 +14,7 @@ const useOffers = () => {
         return db.collection(`users/${user.uid}/offers`)
             .onSnapshot(snapshot => {
                 const offers = [];
-                snapshot.forEach(doc => offers.push(doc.data()));
+                snapshot.forEach(doc => offers.push({id: doc.id, ...doc.data()}));
                 setOffers(offers);
                 setLoading(false);
             }, error => console.log(error));

@@ -60,7 +60,8 @@ const OffersOpen = () => {
             const db = firebase.firestore();
             await db.collection("users").doc(user.uid).collection("offers").add({
                 ...values,
-                caseId: bpmCase.id
+                caseId: bpmCase.id,
+                publishedAt: new Date()
             });
             const {data: tasks} = await axios.get(`${BONITA_URL}/bonita/API/bpm/humanTask?p=0&c=10&f=rootCaseId=${bpmCase.id}`, {
                 headers: {

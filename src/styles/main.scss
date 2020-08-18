@@ -16,6 +16,7 @@ $family-sans-serif: "Recursive", BlinkMacSystemFont, -apple-system, "Segoe UI", 
 $primary: #d90429;
 $primary-invert: #fff;
 $link: $primary;
+$link-hover: lighten($primary, 15);
 
 $purple: #2b2d42;
 $purple-invert: #fff;
@@ -25,11 +26,18 @@ $body-background-color: #edf2f4;
 $scheme-main-bis: transparent;
 
 $navbar-box-shadow-color: rgba(0,0,0,0.1);
+$menu-label-color: rgba(255, 255, 255, 0.7);
+$menu-item-active-background-color: transparent;
+$menu-item-hover-background-color: transparent;
+$menu-item-hover-color: #fff;
+$menu-item-active-color: #fff;
+$menu-item-color: rgba(255, 255, 255, 0.8);
 
 @import "../../node_modules/bulma/bulma";
 @import "~noty/src/noty.scss";
 @import "~noty/src/themes/relax.scss";
 @import "~animate.css/animate.min.css";
+@import "~react-vertical-timeline-component/style.min.css";
 
 .card {
   border-radius: 6px;
