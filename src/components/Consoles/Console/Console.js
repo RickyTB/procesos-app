@@ -1,32 +1,19 @@
 import React from 'react';
+import ReactStars from "react-rating-stars-component";
 
-const Console = () => {
+const Console = ({console}) => {
     return (
         <div className="card">
             <div className="card-image">
-                <figure className="image is-4by3">
-                    <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image"/>
+                <figure className="image is-16by9">
+                    <img src={console.image} alt={console.name}/>
                 </figure>
             </div>
             <div className="card-content">
-                <div className="media">
-                    <div className="media-left">
-                        <figure className="image is-48x48">
-                            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image"/>
-                        </figure>
-                    </div>
-                    <div className="media-content">
-                        <p className="title is-4">John Smith</p>
-                        <p className="subtitle is-6">@johnsmith</p>
-                    </div>
-                </div>
-
-                <div className="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                    <a href="#">#css</a> <a href="#">#responsive</a>
-                    <br/>
-                    <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                <div className="content has-text-centered" style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                    <p className="title is-3 mb-1">{console.name}</p>
+                    <ReactStars count={5} size={32} activeColor="#ffd700" value={console.state / 2} edit={false} classNames="is-justified"/>
+                    <button className="button is-primary is-medium mt-3">COMPRAR - ${console.price.toFixed(2)}</button>
                 </div>
             </div>
         </div>
