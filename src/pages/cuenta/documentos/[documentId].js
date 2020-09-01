@@ -23,16 +23,18 @@ const Document = ({documentId}) => {
             <Head>
                 <title>Documento</title>
             </Head>
-            <section className="section px-0 py-5">
-                <h1 className="title is-1">Contrato de Compra-Venta <a
-                    className="button is-primary is-light is-medium mb-3" href={contract?.url}>
-                    <FontAwesomeIcon icon="file-download"/>&nbsp;Descargar</a>
-                </h1>
-                <iframe
-                    src={`https://docs.google.com/viewerng/viewer?url=${contract?.url}&embedded=true`}
-                    frameBorder="0" height="800px" width="100%">
-                </iframe>
-            </section>
+            {contract && (
+                <section className="section px-0 py-5">
+                    <h1 className="title is-1">Contrato de Compra-Venta <a
+                        className="button is-primary is-light is-medium mb-3" href={contract.url}>
+                        <FontAwesomeIcon icon="file-download"/>&nbsp;Descargar</a>
+                    </h1>
+                    <iframe
+                        src={`https://docs.google.com/viewerng/viewer?url=${contract.url}&embedded=true`}
+                        frameBorder="0" height="800px" width="100%">
+                    </iframe>
+                </section>
+            )}
         </AccountLayout>
     );
 };

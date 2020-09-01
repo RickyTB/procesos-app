@@ -6,7 +6,7 @@ const Console = ({console}) => {
         <div className="card">
             <div className="card-image">
                 <figure className="image is-16by9">
-                    <img src={console.image} alt={console.name}/>
+                    <img src={console.image} alt={console.name} style={{objectFit: "contain"}}/>
                 </figure>
             </div>
             <div className="card-content">
