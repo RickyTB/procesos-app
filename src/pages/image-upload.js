@@ -2,10 +2,10 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {useDropzone} from "react-dropzone";
 import axios from "axios";
 import {useRouter} from "next/router";
+import Cookies from "js-cookie";
 
 import bonitaRequest from "../utils/bonita-request";
 import {BONITA_URL} from "../utils/constants";
-import Cookies from "js-cookie";
 import showNotification from "../utils/show-notification";
 
 const ImageUpload = () => {
