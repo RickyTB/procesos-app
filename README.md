@@ -1,44 +1,41 @@
 # Proceso de publicación y venta de consolas de Tienda Friki
 
-This is a simple set up for Firebase for client side applications.
+El proyecto incluye una aplicación web basada en Next.js y React que sirve como entrada al público general que quiera ofrecernos sus consolas para vender en la tienda.
 
-The firebase app is initialized in `firebase/clientApp.js`, to use you just have to import it anywhere in the app
+En la página se muestran las consolas que estén a la venta, se puede publicar ofertas para la tienda y registrarse y recibir detalles de los procesos iniciados. Además de los documentos generados.
 
-The React Context API is used to provide user state.
+## Tecnología
 
-## Deploy your own
+- React
+- Next.js
+- Firebase
+- Bonita
+- PostgreSQL
+- Docker y docker-compose
+ 
+## Requisitos
 
-Deploy the example using [Vercel](https://vercel.com):
+Docker y docker-compose instalados.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/next.js/tree/canary/examples/with-firebase)
+## Intrucciones
 
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
+1. Clonar el repositorio.
+2. Crear un archivo `.env.local` en la raíz y completar las variables de entorno. Utilice el archivo `.env.local.example` como guía de las variables requeridas.
+3. Colocar el archivo de servidor de firebase en la raíz.
+4. Ejecutar 
 ```bash
-npx create-next-app --example with-firebase with-firebase-app
-# or
-yarn create next-app --example with-firebase with-firebase-app
+docker-compose up -d
 ```
+5. Visitar [http://localhost:3000](http://localhost:3000) para la página web y [http://localhost:8080](http://localhost:8080) para el portal de Bonita.
 
-## Configuration
+## Configuración
 
-1. [Create a Firebase project](https://console.firebase.google.com/u/0/) and add a new app to it.
-2. Create a `.env.local` file and copy the contents of `.env.local.example` into it:
+Instalar el modelo de datos, la organización y los procesos utilizando el portal de Bonita. Los archivos se encuentran en releases.
 
-```bash
-cp .env.local.example .env.local
-```
+## Autor
 
-3. Set each variable on `.env.local` with your Firebase Configuration (found in "Project settings").
+Elaborado por **Ricardo Baquero** utlizando contenidos de **Tienda Friki** para la clase de **Diseño y Gestión de Procesos Organizacionales**. 
 
-## Deploy on Vercel
+Carrera de Ingeniería Informática. 
 
-You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-### Deploy Your Local Project
-
-To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/import/git?utm_source=github&utm_medium=readme&utm_campaign=next-example).
-
-**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
+Universidad Central del Ecuador 2020.

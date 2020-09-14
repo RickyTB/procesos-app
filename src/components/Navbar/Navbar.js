@@ -1,8 +1,9 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import Link from "next/link";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Cookies from "js-cookie";
+import clsx from "clsx";
 
 import {useUser} from "../../context/userContext";
 import firebase from "../../firebase/clientApp";
@@ -10,6 +11,7 @@ import {BONITA_URL} from "../../utils/constants";
 
 const Navbar = () => {
     const {loadingUser, user} = useUser();
+    const [menuOpen, setMenuOpen] = useState(false);
     const handleSignOut = useCallback(async () => {
         try {
             await firebase.auth().signOut();
@@ -25,6 +27,7 @@ const Navbar = () => {
             console.log(e);
         }
     }, []);
+    const toggleMenu = useCallback(() => setMenuOpen(m => !m), []);
     return (
         <nav className="navbar is-black is-fixed-top has-shadow" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
@@ -33,14 +36,18 @@ const Navbar = () => {
                         <img src="/tienda_friki_logo.png" height="28" alt="Tienda Friki Logo"/>
                     </a>
                 </Link>
-                <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                <a role="button"
+                   className={clsx("navbar-burger burger", {"is-active": menuOpen})}
+                   onClick={toggleMenu}
+                   aria-label="menu"
+                   aria-expanded="false"
                    data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-            <div id="navbarBasicExample" className="navbar-menu">
+            <div id="navbarBasicExample" className={clsx("navbar-menu", {"is-active": menuOpen})}>
                 <div className="navbar-start">
                     <Link href="/">
                         <a className="navbar-item">
@@ -70,11 +77,6 @@ const Navbar = () => {
                                     <Link href="/cuenta/ofertas">
                                         <a className="navbar-item">
                                             Ofertas
-                                        </a>
-                                    </Link>
-                                    <Link href="/cuenta/citas">
-                                        <a className="navbar-item">
-                                            Citas
                                         </a>
                                     </Link>
                                     <Link href="/cuenta/documentos">

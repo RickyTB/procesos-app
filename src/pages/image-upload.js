@@ -43,7 +43,6 @@ const ImageUpload = () => {
                 },
                 withCredentials: true,
             });
-            console.log(result);
             showNotification({
                 type: "success",
                 text: "¡Imagen guardada con éxito!"
@@ -63,7 +62,7 @@ const ImageUpload = () => {
                 <h1 className="title is-1">{task.displayName}</h1>
                 <h3 className="subtitle is-3">{product.nombre}</h3>
                 <div {...getRootProps()}>
-                    <img src={url || "/bonita-img.svg"} alt="Sube tu imagen" className="image is-block my-0"
+                    <img src={url || "/img-upload.svg"} alt="Sube tu imagen" className="image is-block my-0"
                          style={{margin: '0 auto'}}/>
                     {!url && (
                         <h4 className="has-text-centered">Selecciona una imagen</h4>
