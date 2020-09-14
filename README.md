@@ -19,7 +19,7 @@ En la página se muestran las consolas que estén a la venta, se puede publicar 
 
 Docker y docker-compose instalados.
 
-## Intrucciones
+## Instrucciones
 
 1. Clonar el repositorio.
 2. Crear un archivo `.env.local` en la raíz y completar las variables de entorno. Utilice el archivo `.env.local.example` como guía de las variables requeridas.
