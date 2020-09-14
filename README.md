@@ -1,4 +1,4 @@
-# Firebase Example
+# Proceso de publicación y venta de consolas de Tienda Friki
 
 This is a simple set up for Firebase for client side applications.
 

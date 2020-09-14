@@ -45,6 +45,7 @@ const Signup = () => {
                 withCredentials: true,
                 headers: {'Content-Type': "application/x-www-form-urlencoded"}
             });
+            location.href = "/";
         } catch (error) {
             showNotification({
                 text: error.message,

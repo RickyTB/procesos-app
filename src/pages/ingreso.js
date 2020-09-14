@@ -33,12 +33,10 @@ const Login = () => {
             params.append("username", values.email);
             params.append("password", values.password);
             params.append("redirect", "false");
-            const response = await axios.post(`${BONITA_URL}/bonita/loginservice`, params, {
+            await axios.post(`${BONITA_URL}/bonita/loginservice`, params, {
                 withCredentials: true,
                 headers: {'Content-Type': "application/x-www-form-urlencoded"}
             });
-            console.log(response);
-            console.log(response.headers);
         } catch (error) {
             showNotification({
                 text: error.message,

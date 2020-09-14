@@ -35,11 +35,6 @@ const SideMenu = () => {
                     )}
                 </li>
                 <li>
-                    <Link href="/cuenta/citas">
-                        <a className={clsx({"is-active": router.pathname === "/cuenta/citas"})}>Citas</a>
-                    </Link>
-                </li>
-                <li>
                     <Link href="/cuenta/documentos">
                         <a className={clsx({"is-active": router.pathname === "/cuenta/documentos"})}>Documentos</a>
                     </Link>
