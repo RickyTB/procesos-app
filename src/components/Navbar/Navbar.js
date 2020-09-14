@@ -1,13 +1,30 @@
 import React, {useCallback} from 'react';
 import Link from "next/link";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 import {useUser} from "../../context/userContext";
 import firebase from "../../firebase/clientApp";
+import {BONITA_URL} from "../../utils/constants";
 
 const Navbar = () => {
     const {loadingUser, user} = useUser();
-    const handleSignOut = useCallback(async () => firebase.auth().signOut(), []);
+    const handleSignOut = useCallback(async () => {
+        try {
+            await firebase.auth().signOut();
+            await axios.get(`${BONITA_URL}/bonita/logoutservice`,
+                {
+                    withCredentials: true,
+                    headers: {
+                        'X-Bonita-API-Token': Cookies.get("X-Bonita-API-Token")
+                    },
+                });
+        } catch (e) {
+            Cookies.remove('X-Bonita-API-Token')
+            console.log(e);
+        }
+    }, []);
     return (
         <nav className="navbar is-black is-fixed-top has-shadow" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">

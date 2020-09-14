@@ -9,6 +9,7 @@ export default async (req, res) => {
         let snapshot = await db.collection('users').where("bonitaId", "==", userId).get();
         if (snapshot.empty) {
             console.log('No matching documents.');
+            res.status(404).json({success: false});
             return;
         }
         const users = [];

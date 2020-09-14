@@ -2,7 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 import cookie from 'cookie';
 
-import {BONITA_URL} from "../../utils/constants";
+import {SERVER_BONITA_URL} from "../../utils/constants";
 import {findProcess} from "../../utils/common-requests";
 
 export default async (req, res) => {
@@ -23,15 +23,15 @@ export default async (req, res) => {
 
     try {
         const bonitaToken = await bonitaAuth();
-        const {data: user} = await axios.post(`${BONITA_URL}/bonita/API/identity/user`, userPayload, {
+        const {data: user} = await axios.post(`${SERVER_BONITA_URL}/bonita/API/identity/user`, userPayload, {
             withCredentials: true,
             headers: {
                 "X-Bonita-API-Token": bonitaToken["X-Bonita-API-Token"],
                 Cookie: bonitaToken.cookie,
             }
         });
-        const membershipPayload = {"role_id": "201", "group_id": "201", "user_id": user.id};
-        const {data: membership} = await axios.post(`${BONITA_URL}/bonita/API/identity/membership`, membershipPayload, {
+        const membershipPayload = {"role_id": "2", "group_id": "2", "user_id": user.id};
+        const {data: membership} = await axios.post(`${SERVER_BONITA_URL}/bonita/API/identity/membership`, membershipPayload, {
             withCredentials: true,
             headers: {
                 "X-Bonita-API-Token": bonitaToken["X-Bonita-API-Token"],
@@ -40,7 +40,7 @@ export default async (req, res) => {
         });
         const publishProcess = await findProcess("CompraDeConsola", bonitaToken["X-Bonita-API-Token"], {Cookie: bonitaToken.cookie});
         const actorPayload = {"actor_id": publishProcess.actorinitiatorid, "user_id": user.id};
-        const {data: actor} = await axios.post(`${BONITA_URL}/bonita/API/bpm/actorMember`, actorPayload, {
+        const {data: actor} = await axios.post(`${SERVER_BONITA_URL}/bonita/API/bpm/actorMember`, actorPayload, {
             withCredentials: true,
             headers: {
                 "X-Bonita-API-Token": bonitaToken["X-Bonita-API-Token"],
@@ -48,7 +48,7 @@ export default async (req, res) => {
             }
         });
         const memberPayload = {"profile_id": "1", "member_type": "USER", "user_id": user.id};
-        const {data: member} = await axios.post(`${BONITA_URL}/bonita/API/portal/profileMember/`, memberPayload, {
+        const {data: member} = await axios.post(`${SERVER_BONITA_URL}/bonita/API/portal/profileMember/`, memberPayload, {
             withCredentials: true,
             headers: {
                 "X-Bonita-API-Token": bonitaToken["X-Bonita-API-Token"],
@@ -69,6 +69,6 @@ const bonitaAuth = async () => {
         "password": process.env.BONITA_ADMIN_PASSWORD,
         "redirect": "false",
     });
-    const response = await axios.post(`${BONITA_URL}/bonita/loginservice`, adminCredentials, {withCredentials: true});
+    const response = await axios.post(`${SERVER_BONITA_URL}/bonita/loginservice`, adminCredentials, {withCredentials: true});
     return {cookie: response.headers["set-cookie"].join(";"), ...cookie.parse(response.headers["set-cookie"].join(";"))};
 };
