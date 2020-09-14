@@ -2,7 +2,9 @@
 
 El proyecto incluye una aplicación web basada en Next.js y React que sirve como entrada al público general que quiera ofrecernos sus consolas para vender en la tienda.
 
-En la página se muestran las consolas que estén a la venta, se puede publicar ofertas para la tienda y registrarse y recibir detalles de los procesos iniciados. Además de los documentos generados.
+Bonita BPM se encarga de gestionar todos los pasos del proceso y se conecta a la página de la tienda utilizando sus API.
+
+En la página se muestran las consolas que estén a la venta, se puede publicar ofertas para la tienda, registrarse y recibir detalles de los procesos iniciados. Además de los documentos generados.
 
 ## Tecnología
 
